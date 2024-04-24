@@ -1,4 +1,8 @@
-# EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER
+```PY
+NAME : SATHISH R
+REG NO:212222100048
+```
+# EXPERIMENT--06-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER
 
 ### Aim:
 To generate a PWM wave at the timer pin output and  simuate it on  proteus using an virtual oscilloscope  
@@ -46,35 +50,21 @@ In normal settings, assuming you’re using the timer module in PWM mode and gen
 
 ## Procedure:
 Step1: Open CubeMX & Create New Project
- ![image](https://user-images.githubusercontent.com/36288975/226189166-ac10578c-c059-40e7-8b80-9f84f64bf088.png)
-
 
 Step2: Choose The Target MCU & Double-Click Its Name select the target to be programmed  as shown below and click on next 
 
- ![image](https://user-images.githubusercontent.com/36288975/226189215-2d13ebfb-507f-44fc-b772-02232e97c0e3.png)
-![image](https://user-images.githubusercontent.com/36288975/226189230-bf2d90dd-9695-4aaf-b2a6-6d66454e81fc.png)
-
-![image](https://user-images.githubusercontent.com/36288975/226189280-ed5dcf1d-dd8d-43ae-815d-491085f4863b.png)
-
 Step3: Configure Timer2 Peripheral To Operate In PWM Mode With CH1 Output
-![image](https://github.com/vasanthkumarch/EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER/assets/36288975/682c851a-7dfe-4089-8395-f76088d43896)
-
 
 Step4: Set The RCC External Clock Source
-![image](https://github.com/vasanthkumarch/EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER/assets/36288975/8888af3b-63e2-4760-a51b-17b477763941)
-
 
 STM32 RCC External Clock Selection CubeMX
 
 Step5: Go To The Clock Configuration
 
 Step6: Set The System Clock To Be 72MHz
-![image](https://github.com/vasanthkumarch/EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER/assets/36288975/4ea03faa-fb90-4b31-8079-3db5f959f2c3)
 
 
 Step7: Name & Generate The Project Initialization Code For CubeIDE or The IDE You’re Using
-
-
 
 Step8.  Creating Proteus project and running the simulation
 We are now at the last part of step by step guide on how to simulate STM32 project in Proteus.
@@ -82,58 +72,64 @@ We are now at the last part of step by step guide on how to simulate STM32 proje
 Step9. Create a new Proteus project and place STM32F40xx i.e. the same MCU for which the project was created in STM32Cube IDE. 
 14. After creation of the circuit as per requirement as shown below 
 
- ![image](https://github.com/vasanthkumarch/EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER/assets/36288975/4f377f5e-bdda-489e-a416-c712c893831d)
-
 Step10. Double click on the the MCU part to open settings. Next to the Program File option, give full path to the Hex file generated using STM32Cube IDE. Then set the external crystal frequency to 8M (i.e. 8 MHz). Click OK to save the changes.
-
  
 Step14. click on debug and simulate using simulation as shown below 
  ![image](https://github.com/vasanthkumarch/EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER/assets/36288975/b8efbfc2-f0c5-4106-8117-3a6e7ac87f6c)
 
-
- 
-
-  
-
 ## STM 32 CUBE PROGRAM :
+``` C++
+MX_GPIO_Init();
+MX_TIM2_Init();
+{
+    HAL_TIM_Base_Start(&htim2);
+    HAL_TIM_PWM_Init(&htim2);
+    HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
+}
 
-
-
-
-
+```
 ## Output screen shots of proteus  :
- 
+ ![output](pmc6a.png)
  
  ## CIRCUIT DIAGRAM (EXPORT THE GRAPHICS TO PDF AND ADD THE SCREEN SHOT HERE): 
  
+ ![output](pmc6b.png)
 
 ## DUTY CYCLE AND FREQUENCY CALCULATION 
+
+
 FOR PULSE AT 500
-
-TON = 
-TOFF=
-TOTAL TIME = 
-FREQUENCY = 1/(TOTAL TIME)
-
+ ![output](pmc6c.png)
+```
+  TON  = 2ms
+  TOFF = 2ms
+  TOTAL TIME = 4 
+  FREQUENCY = 1/(TOTAL TIME)
+            = 1/(410^-3)
+            = 250Hz
+```
 FOR PULSE AT 700
 
-TON = 
-TOFF=
-TOTAL TIME = 
+![output](pmc6d.png)
+```
+TON  = 2.17ms
+TOFF = 0.93ms
+TOTAL TIME = 3.1 
 FREQUENCY = 1/(TOTAL TIME)
-
-
+          = 1/(3.110^-3)
+          = 322.58Hz
+```
 FOR PULSE AT 900
 
-TON = 
-TOFF=
-TOTAL TIME = 
+![output](pmc6e.png)
+```
+TON  = 2.88ms
+TOFF = 0.32ms
+TOTAL TIME = 3.2 
 FREQUENCY = 1/(TOTAL TIME)
+          = 1/(3.210^-30
+          = 312.5Hz
 
-
+```
 ## Result :
 A PWM Signal is generated using the following frequency and various duty cycles are simulated 
-
-
-
-
